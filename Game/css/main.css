@@ -1,0 +1,23 @@
+body{
+    background-color: grey;
+}
+
+#title{
+    text-align: center;
+    font-family:sans-serif;
+}
+
+#next_level{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+}
+
+#diff{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 5%;
+}
+

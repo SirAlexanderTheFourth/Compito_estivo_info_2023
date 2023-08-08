@@ -1,22 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maze Game</title>
-    <link rel="stylesheet" href="./mazing.css">
-    <script src="./Maze_Generator.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maze Game</title>
+  <link rel="stylesheet" href="./css/mazing.css">
+  <link rel="stylesheet" href="./css/main.css">
+  <script src="./js/Maze_Generator.js"></script>
+  <script src="./js/Maze_Builder.js"></script>
+  <script src="./js/Mazing.js"></script>
 </head>
+
 <body>
-    <div id="maze_container"><!-- --></div>
+
+  <h2 id="title">MAZE GAME AI</h2>
+
+  <select name="difficulty" id="diff">
+    <option value="ez" style="color: lime;">Easy</option>
+    <option value="mid"style="color: orange;">Medium</option>
+    <option value="hd"style="color: red;">Hard</option>
+    <option value="damn"style="color: rgb(83, 2, 2);">INSANE</option>
+  </select>
+
+  <div id="maze_container"></div>
+
+  <button id="next_level" value="next">next level</button>
 </body>
+
 </html>
 
-<script>
-
-  let Maze = new MazeBuilder(16, 12);
-  Maze.placeKey();
-  Maze.display("maze_container");
-
-</script>
+<script src="./js/Maze_Settings.js"></script>
