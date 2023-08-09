@@ -90,7 +90,6 @@ var Position = function(x, y) {
   
   Mazing.prototype.heroWins = function() {
     this.maze[this.heroPos].classList.remove("door");
-    this.heroScore += 50;
     this.gameOver("you finished !!!");
   };
   
