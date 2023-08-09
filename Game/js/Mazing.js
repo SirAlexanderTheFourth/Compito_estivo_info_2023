@@ -137,7 +137,7 @@ var Position = function(x, y) {
       return;
     }
   
-    this.setMessage("Cheese");
+    this.setMessage("...");
   
 
   };
