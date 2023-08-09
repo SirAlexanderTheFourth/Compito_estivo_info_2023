@@ -68,7 +68,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    content: "Game Over";
+    content: "You Win";
     background: rgba(0,0,0,0.4);
     text-align: center;
     text-transform: uppercase;

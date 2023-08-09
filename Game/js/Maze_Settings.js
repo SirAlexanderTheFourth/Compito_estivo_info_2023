@@ -11,10 +11,10 @@ const makeMaze = (id, width, height, speech = false) => {
 
 let difficulty = document.getElementById("diff")
 makeMaze("maze_container", 10, 6);
-difficulty.style.color = "lime"
+difficulty.style.color = "green"
 difficulty.addEventListener("change",function(e){
   if (difficulty.value == "ez"){
-    difficulty.style.color = "lime"
+    difficulty.style.color = "green"
     makeMaze("maze_container", 10, 6);
   }else if (difficulty.value == "mid"){
     difficulty.style.color = "orange"
