@@ -49,20 +49,20 @@ var Mazing = function (id) {
 
   this.mazeContainer.insertAdjacentElement("afterend", mazeOutputDiv);
 
-    if (this.type_of_controller.value == "frecce") {
+  if (this.type_of_controller.value == "frecce") {
 
-      /* activate control keys */
-      this.keyPressHandler = this.mazeKeyPressHandler.bind(this);
-      document.addEventListener("keydown", this.keyPressHandler, false);
+    /* activate control keys */
+    this.keyPressHandler = this.mazeKeyPressHandler.bind(this);
+    document.addEventListener("keydown", this.keyPressHandler, false);
 
-    } else {
+  } else {
 
-      let soundClassifier;
-      let options = { probabilityThreshold: 0.95 };
-      soundClassifier = ml5.soundClassifier('SpeechCommands18w', options)
-      soundClassifier.classify(this.gotResults.bind(this))
-    }
-    e.preventDefault()
+    let soundClassifier;
+    let options = { probabilityThreshold: 0.95 };
+    soundClassifier = ml5.soundClassifier('SpeechCommands18w', options)
+    soundClassifier.classify(this.gotResults.bind(this))
+  }
+  e.preventDefault()
 };
 
 Mazing.prototype.gotResults = function (error, results) {
@@ -72,6 +72,9 @@ Mazing.prototype.gotResults = function (error, results) {
   }
 
   this.res = results[0].label;
+  if (this.res == "right" || this.res == "up" || this.res == "down" || this.res == "left") {
+    this.setMessage(this.res)
+  }
   this.mazeVoice();
   //console.log(this.res);
 };
@@ -156,9 +159,6 @@ Mazing.prototype.tryMoveHero = function (pos) {
   if (nextStep.match(/exit/)) {
     return;
   }
-
-  this.setMessage("...");
-
 
 };
 
