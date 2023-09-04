@@ -55,7 +55,7 @@ var Mazing = function (id) {
 
     /* activate voice control */
     let soundClassifier;
-    let options = { probabilityThreshold: 0.95 };
+    let options = {probabilityThreshold: 0.90};
     soundClassifier = ml5.soundClassifier('SpeechCommands18w', options)
     soundClassifier.classify(this.gotResults.bind(this))
 };

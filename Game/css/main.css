@@ -49,3 +49,15 @@ body{
     font-family:sans-serif;
     background-color: lightgray;
 }
+
+#s_diff2{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    margin-top: 2%;
+    font-weight:bold;
+    font-size: 120%;
+    font-family:sans-serif;
+    color: darkred;
+}
