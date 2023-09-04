@@ -1,5 +1,4 @@
 var Maze, MazeGame;
-
 const makeMaze = (id, width, height, speech = false) => {
   Maze = new FancyMazeBuilder(width, height);
   Maze.display(id);

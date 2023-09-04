@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maze Game</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ml5/0.5.2/ml5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
+  <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js"></script>
   <link rel="stylesheet" href="./css/mazing.css">
   <link rel="stylesheet" href="./css/main.css">
   <script src="./js/Maze_Generator.js"></script>
   <script src="./js/Maze_Builder.js"></script>
-  <script src="./js/Mazing.js"></script>
 </head>
 
 <body>
-
   <h2 id="title">MAZE GAME AI</h2>
+
+  <select name="tipo" id="type">
+    <option value="voce">Voice</option>
+    <option value="frecce">Arrows</option>
+  </select>
+
+  <script src="./js/Mazing.js"></script>
 
   <t id = "s_diff">DIFFICULTY:</t>
   <select name="difficulty" id="diff">
@@ -28,7 +35,6 @@
 
   <div id="maze_container"></div>
 
-  <button id="next_level" value="next">next level</button>
 </body>
 
 </html>
