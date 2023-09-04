@@ -11,7 +11,6 @@ Position.prototype.toString = function () {
 
 var Mazing = function (id) {
 
-  this.type_of_controller = document.getElementById("type")
   this.mazeContainer = document.getElementById(id);
   this.mazeMessage = document.createElement("div");
   this.mazeMessage.id = "maze_message";
@@ -23,7 +22,6 @@ var Mazing = function (id) {
   this.heroHasKey = false;
   this.childMode = false;
   this.res = ""
-  this.tipo = ""
 
   this.utter = null;
 
@@ -49,20 +47,19 @@ var Mazing = function (id) {
 
   this.mazeContainer.insertAdjacentElement("afterend", mazeOutputDiv);
 
-  if (this.type_of_controller.value == "frecce") {
 
-    /* activate control keys */
+    /* activate control keys 
     this.keyPressHandler = this.mazeKeyPressHandler.bind(this);
     document.addEventListener("keydown", this.keyPressHandler, false);
+    */
 
-  } else {
-
+    /* activate voice control */
     let soundClassifier;
     let options = { probabilityThreshold: 0.95 };
     soundClassifier = ml5.soundClassifier('SpeechCommands18w', options)
     soundClassifier.classify(this.gotResults.bind(this))
-  }
 };
+
 
 Mazing.prototype.gotResults = function (error, results) {
   if (error) {
@@ -160,27 +157,31 @@ Mazing.prototype.tryMoveHero = function (pos) {
   }
 
 };
-
+/*
 Mazing.prototype.mazeKeyPressHandler = function (e) {
 
   var tryPos = new Position(this.heroPos.x, this.heroPos.y);
 
   switch (e.key) {
     case "ArrowLeft":
+      this.setMessage("left")
       this.mazeContainer.classList.remove("face-right");
       tryPos.y--;
       break;
 
     case "ArrowUp":
+      this.setMessage("up")
       tryPos.x--;
       break;
 
     case "ArrowRight":
+      this.setMessage("right")
       this.mazeContainer.classList.add("face-right");
       tryPos.y++;
       break;
 
     case "ArrowDown":
+      this.setMessage("down")
       tryPos.x++;
       break;
 
@@ -192,7 +193,7 @@ Mazing.prototype.mazeKeyPressHandler = function (e) {
   this.tryMoveHero(tryPos);
 
   e.preventDefault();
-};
+};*/
 
 Mazing.prototype.mazeVoice = function () {
   var tryPos = new Position(this.heroPos.x, this.heroPos.y);
