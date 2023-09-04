@@ -111,6 +111,7 @@ Mazing.prototype.gameOver = function (text) {
 Mazing.prototype.heroWins = function () {
   this.maze[this.heroPos].classList.remove("door");
   this.gameOver("you finished !!!");
+  this.setMessage("you finished !!!")
 };
 
 Mazing.prototype.tryMoveHero = function (pos) {
