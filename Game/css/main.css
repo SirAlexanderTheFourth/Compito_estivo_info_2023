@@ -38,3 +38,14 @@ body{
     background-color: lightgray;
 }
 
+#commands{
+    color: darkblue;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    margin-top: 1%;
+    font-weight: bolder;
+    font-family:sans-serif;
+    background-color: lightgray;
+}
