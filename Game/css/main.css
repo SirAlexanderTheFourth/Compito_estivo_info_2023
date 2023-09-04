@@ -8,19 +8,12 @@ body{
     font-size: 180%;
 }
 
-#next_level{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 10%;
-}
-
 #s_diff{
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: fit-content;
-    margin-top: 3%;
+    margin-top: 2%;
     font-weight:bold;
     font-size: 120%;
     font-family:sans-serif;
@@ -38,3 +31,13 @@ body{
     background-color: lightgray;
 }
 
+#type{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    margin-top: 1%;
+    font-weight: bolder;
+    font-family:sans-serif;
+    background-color: lightgray;
+}

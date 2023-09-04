@@ -62,7 +62,6 @@ var Mazing = function (id) {
     soundClassifier = ml5.soundClassifier('SpeechCommands18w', options)
     soundClassifier.classify(this.gotResults.bind(this))
   }
-  e.preventDefault()
 };
 
 Mazing.prototype.gotResults = function (error, results) {
