@@ -15,13 +15,16 @@ var Mazing = function (id) {
   this.mazeMessage = document.createElement("div");
   this.mazeMessage.id = "maze_message";
 
-  this.heroScore = this.mazeContainer.getAttribute("data-steps") - 2;
+  this.mazeTimer = document.createElement("div");
+  this.mazeTimer.id = "maze_Timer";
 
   this.maze = [];
   this.heroPos = {};
   this.heroHasKey = false;
   this.childMode = false;
   this.res = ""
+  this.timer = 0
+  this.ferma = false
 
   this.utter = null;
 
@@ -46,32 +49,47 @@ var Mazing = function (id) {
   this.setMessage("first find the key");
 
   this.mazeContainer.insertAdjacentElement("afterend", mazeOutputDiv);
+  mazeOutputDiv.appendChild(this.mazeTimer);
+  mazeOutputDiv.appendChild(this.mazeMessage);
 
-    /* activate control keys 
+    // activate timer
+    this.Timer()
+
+    /* activate control keys
     this.keyPressHandler = this.mazeKeyPressHandler.bind(this);
     document.addEventListener("keydown", this.keyPressHandler, false);
     */
 
     /* activate voice control */
-    let soundClassifier;
-    let options = {probabilityThreshold: 0.95};
-    soundClassifier = ml5.soundClassifier('SpeechCommands18w', options)
-    soundClassifier.classify(this.gotResults.bind(this))
+    this.soundClassifier;
+    this.options = {probabilityThreshold: 0.95};
+    this.soundClassifier = ml5.soundClassifier('SpeechCommands18w', this.options)
+    this.soundClassifier.classify(this.gotResults.bind(this))
 };
 
+// Timer Function (upgrade and show on screen the timer)
+Mazing.prototype.Timer = function () {
+  setInterval(() => {
+    if (this.ferma === false) {
+      this.timer++;
+      this.mazeTimer.innerHTML = this.timer;
+    } else {
+      clearInterval();
+    }
+  }, 1000);
+};
 
+// listen your voice
 Mazing.prototype.gotResults = function (error, results) {
   if (error) {
     console.error("NUH UH:", error);
     return;
   }
-
   this.res = results[0].label;
   if (this.res == "right" || this.res == "up" || this.res == "down" || this.res == "left") {
     this.setMessage(this.res)
   }
   this.mazeVoice();
-  //console.log(this.res);
 };
 
 Mazing.prototype.enableSpeech = function () {
@@ -96,23 +114,22 @@ Mazing.prototype.setMessage = function (text) {
 Mazing.prototype.heroTakeKey = function () {
   this.maze[this.heroPos].classList.remove("key");
   this.heroHasKey = true;
-  this.heroScore += 20;
   this.setMessage("you now have the key!");
 };
 
 Mazing.prototype.gameOver = function (text) {
   /* de-activate control keys */
+  this.ferma = true
   document.removeEventListener("keydown", this.keyPressHandler, false);
   this.setMessage(text);
   this.mazeContainer.classList.add("finished");
-  this.soundClassifier.stop();
 };
 
 Mazing.prototype.heroWins = function () {
+  this.ferma = true
   this.maze[this.heroPos].classList.remove("door");
   this.gameOver("you finished !!!");
   this.setMessage("you finished !!!")
-  this.soundClassifier.stop();
 };
 
 Mazing.prototype.tryMoveHero = function (pos) {
@@ -143,11 +160,6 @@ Mazing.prototype.tryMoveHero = function (pos) {
   this.heroPos = pos;
 
   /* check what was stepped on */
-
-  if (nextStep.match(/nubbin/)) {
-    this.heroTakeTreasure();
-    return;
-  }
 
   if (nextStep.match(/key/)) {
     this.heroTakeKey();

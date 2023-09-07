@@ -83,20 +83,20 @@
     display: flex;
     margin: 0.5em auto;
   }
-  #maze_score, #maze_message {
+  #maze_Timer, #maze_message {
     font-family: fantasy;
     font-weight: bold;
     font-size: 1em;
   }
-  #maze_score {
+  #maze_Timer {
     flex: 1;
     white-space: nowrap;
     text-align: left;
   }
-  #maze_score::before {
-    content: "Score: ";
+  #maze_Timer::before {
+    content: "Time: ";
   }
-  #maze_score.has-key::after {
+  #maze_Timer.has-key::after {
     content: "\00a0\1F511";
   }
   #maze_message {
