@@ -47,7 +47,6 @@ var Mazing = function (id) {
 
   this.mazeContainer.insertAdjacentElement("afterend", mazeOutputDiv);
 
-
     /* activate control keys 
     this.keyPressHandler = this.mazeKeyPressHandler.bind(this);
     document.addEventListener("keydown", this.keyPressHandler, false);
@@ -55,7 +54,7 @@ var Mazing = function (id) {
 
     /* activate voice control */
     let soundClassifier;
-    let options = {probabilityThreshold: 0.90};
+    let options = {probabilityThreshold: 0.95};
     soundClassifier = ml5.soundClassifier('SpeechCommands18w', options)
     soundClassifier.classify(this.gotResults.bind(this))
 };
@@ -106,12 +105,14 @@ Mazing.prototype.gameOver = function (text) {
   document.removeEventListener("keydown", this.keyPressHandler, false);
   this.setMessage(text);
   this.mazeContainer.classList.add("finished");
+  this.soundClassifier.stop();
 };
 
 Mazing.prototype.heroWins = function () {
   this.maze[this.heroPos].classList.remove("door");
   this.gameOver("you finished !!!");
   this.setMessage("you finished !!!")
+  this.soundClassifier.stop();
 };
 
 Mazing.prototype.tryMoveHero = function (pos) {
